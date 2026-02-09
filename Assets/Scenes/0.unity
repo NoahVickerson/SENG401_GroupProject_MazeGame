@@ -151,7 +151,7 @@ MonoBehaviour:
   cam: {fileID: 519420033}
   wallPrefab: {fileID: 9084305603660091944, guid: 3a54bf715ba044f0dbd60c75e927a242, type: 3}
   mazeDimsX: 50
-  mazeDimsY: 25
+  mazeDimsY: 50
 --- !u!4 &305159225
 Transform:
   m_ObjectHideFlags: 0
