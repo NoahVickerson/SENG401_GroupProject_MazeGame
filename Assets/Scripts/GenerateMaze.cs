@@ -109,17 +109,13 @@ public class GenerateMaze : MonoBehaviour
     return new Vector2(maxBounds.x - minBounds.x, maxBounds.y - minBounds.y);
   }
 
-  private void SetCamera(){
+  private void setCamera(){
     Vector2 dims = GetRoomSize();
-    // cam.SetCameraPosition(new Vector2(
-    //     mazeDimsX * (dims.x - 1)/2,
-    //     mazeDimsY * (dims.y - 1)/2));
 
-    // float minValue = Mathf.Max(mazeDimsX * (dims.x - 1), mazeDimsY * (dims.y - 1));
     float minValue = Mathf.Max(5.5f * (dims.x - 1), 5.5f * (dims.y - 1));
     cam.SetCameraSize(minValue * 0.75f);
   }
-
+  
   private void renderMaze(){
     Vector2 dims = GetRoomSize();
     for(int i = 0; i < mazeDimsX; i++){
@@ -173,7 +169,7 @@ public class GenerateMaze : MonoBehaviour
     mazeWalls = new Wall[mazeDimsX, mazeDimsY];
     generateMaze();
     renderMaze();
-    SetCamera();
+    setCamera();
   }
 
   // Update is called once per frame

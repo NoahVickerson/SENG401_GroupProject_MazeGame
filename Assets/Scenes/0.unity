@@ -149,7 +149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GenerateMaze
   cam: {fileID: 519420033}
-  wallPrefab: {fileID: 9084305603660091944, guid: 3a54bf715ba044f0dbd60c75e927a242, type: 3}
+  wallPrefab: {fileID: 1108726818804099887, guid: 360eca945212646c2a8b471915877c1c, type: 3}
   mazeDimsX: 50
   mazeDimsY: 50
 --- !u!4 &305159225
@@ -317,6 +317,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c7ab612a60f147f8bf01446e1d86359, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraController
+  player: {fileID: 1576454049}
+  offset: {x: 0, y: 5, z: -8}
+  followSharpness: 15
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
@@ -433,10 +436,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06494ac74877e427595b69d55bc13147, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
-  cam: {fileID: 519420033}
   timeslice: 0.1
-  maxVel: 0.2
-  acceleration: 0.005
+  maxVel: 5
+  minVel: 1
+  acceleration: 0.5
   velDecay: 1.1
 --- !u!212 &1576454046
 SpriteRenderer:
@@ -506,7 +509,7 @@ Transform:
   m_GameObject: {fileID: 1576454044}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 1.059, y: 0.655, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -532,16 +535,16 @@ CircleCollider2D:
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 0
   m_ForceReceiveLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 1
   m_ContactCaptureLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 0
   m_CallbackLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 0
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_CompositeOperation: 0
@@ -571,10 +574,10 @@ Rigidbody2D:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 1
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

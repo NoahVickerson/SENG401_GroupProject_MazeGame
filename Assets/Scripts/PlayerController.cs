@@ -6,16 +6,18 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-  private GameObject player;
+  private const double invalidPos = -1E3;
 
-  [SerializeField]
-  private CameraController cam;
+  private GameObject player;
 
   [SerializeField]
   private float timeslice;
 
   [SerializeField]
   private float maxVel;
+
+  [SerializeField]
+  private float minVel;
 
   [SerializeField]
   private float acceleration;
@@ -26,6 +28,8 @@ public class PlayerController : MonoBehaviour
   private Vector2 targetPosition;
   private float targetDistance;
 
+  Rigidbody2D rb;
+
     public enum Directions{
       UP,
       DOWN,
@@ -35,14 +39,6 @@ public class PlayerController : MonoBehaviour
     
     private Vector2  velocity;
     List<Directions> pressedDirections;
-
-    private void updatePosition(){
-      player.transform.position += new Vector3(velocity.x*timeslice,velocity.y*timeslice, 0.0f);
-
-      cam.SetCameraPosition(new Vector2(
-            player.transform.position.x,
-            player.transform.position.y));
-    }
 
     private void updateVelocity(List<Directions> pressedKeys){
       if(pressedKeys.Contains(Directions.DOWN))
@@ -63,30 +59,33 @@ public class PlayerController : MonoBehaviour
         velocity /= velocity.magnitude;
         velocity *= maxVel;
       }
+
+      rb.linearVelocity = velocity;
     }
 
     private void updateVelocity(Vector2 mouseClickPosition){
       float curDist = Vector2.Distance(mouseClickPosition, (Vector2)player.transform.position);
       if(curDist < 1E-3){
-        targetPosition.x = -1;
-        targetPosition.y = -1;
+        targetPosition.x = (float)invalidPos;
+        targetPosition.y = (float)invalidPos;
         return;
       }
-      float velocityScalar = Math.Abs((float)(-1*Math.Pow(curDist - targetDistance/2, 2) + maxVel));
-      velocityScalar = 0.2f;
+      float velocityScalar = Math.Abs((float)(-4*maxVel*curDist*(curDist-targetDistance)/(Math.Pow(targetDistance,2)))) + minVel;
+      Debug.Log(velocityScalar);
       velocity = velocityScalar*(mouseClickPosition - (Vector2)player.transform.position)/curDist;
+
+      rb.linearVelocity = velocity;
     }
   
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
       player = gameObject;
+      rb = GetComponent<Rigidbody2D>();
         
       velocity = new Vector2(0,0);
-      targetPosition = new Vector2(-1, -1);
+      targetPosition = new Vector2((float)invalidPos, (float)invalidPos);
       pressedDirections = new List<Directions>();
-
-      cam.SetCameraPosition(new Vector2(0,0));
     }
 
     // Update is called once per frame
@@ -100,6 +99,8 @@ public class PlayerController : MonoBehaviour
 
         // convert that to a point on the screen
         mousePos = Camera.main.ScreenToWorldPoint(mousePos);
+        Debug.Log(mousePos);
+
 
         targetPosition.x = mousePos.x;
         targetPosition.y = mousePos.y;
@@ -122,14 +123,19 @@ public class PlayerController : MonoBehaviour
 
       if(pressedDirections.Count > 0){
         updateVelocity(pressedDirections);
-        targetPosition.x = -1;
-        targetPosition.y = -1;
+        targetPosition.x = (float)invalidPos;
+        targetPosition.y = (float)invalidPos;
       }
-      else if(targetPosition.x > 0 && targetPosition.y > 0)
+      else if(targetPosition.x > invalidPos && targetPosition.y > invalidPos)
         updateVelocity(targetPosition);
       else
         updateVelocity(pressedDirections);
-      updatePosition();
     }
+
+    void OnCollisionEnter(Collision c)
+{
+    if (c.gameObject.CompareTag("Wall"))
+        Debug.Log("Hit wall");
+}
 
 }
