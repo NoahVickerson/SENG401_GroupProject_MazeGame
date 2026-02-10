@@ -10,6 +10,9 @@ public class Registration : MonoBehaviour
     private VisualElement root;
     [SerializeField] private UIDocument welcomeDoc;
     private VisualElement welcomePanel;
+    private InputField emailInput;
+    private InputField firstnameInput;
+    private InputField lastnameInput;
     private InputField usernameInput;
     private InputField passwordInput;
 
@@ -50,6 +53,9 @@ public class Registration : MonoBehaviour
     IEnumerator Register()
     {
         WWWForm form = new WWWForm();
+        form.AddField("email", emailInput.text);
+        form.AddField("firstname", firstnameInput.text);
+        form.AddField("lastname", lastnameInput.text);
         form.AddField("username", usernameInput.text);
         form.AddField("password", passwordInput.text);
         WWW www = new WWW("http://localhost/SQLConnect/register.php", form);
