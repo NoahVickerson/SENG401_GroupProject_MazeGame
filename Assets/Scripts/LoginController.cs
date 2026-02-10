@@ -1,17 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+//using UnityEngine.UI;
 using UnityEngine.UIElements;
-using Button = UnityEngine.UIElements.Button;
 
-public class Registration : MonoBehaviour
+public class LoginController : MonoBehaviour
 {
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
     private VisualElement root;
     [SerializeField] private UIDocument welcomeDoc;
     private VisualElement welcomePanel;
-    private InputField usernameInput;
-    private InputField passwordInput;
+    private TextField usernameInput;
+    private TextField passwordInput;
 
     private Button registerButton;
     private Button backButton;
