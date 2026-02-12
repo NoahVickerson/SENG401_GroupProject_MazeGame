@@ -2,8 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.UIElements;
-using Button = UnityEngine.UIElements.Button;
+// using UnityEngine.UIElements;
+// using Button = UnityEngine.UIElements.Button;
 
 public class Registration : MonoBehaviour
 {
@@ -16,7 +16,7 @@ public class Registration : MonoBehaviour
     public InputField usernameInput;
     public InputField passwordInput;
 
-    public Button registerButton;
+    public Button submitButton;
     // private Button backButton;
     // private Button createButton;
 
@@ -73,6 +73,6 @@ public class Registration : MonoBehaviour
 
     public void VerifyInputs()
     {
-        // place constraints on username and password here, such as length, special characters, etc.
+        // place constraints on input fields here, such as length, special characters, etc.
     }
 }

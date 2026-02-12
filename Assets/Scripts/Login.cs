@@ -5,13 +5,10 @@ using UnityEngine.UI;
 
 public class Login : MonoBehaviour
 {
-    private InputField emailInput;
-    private InputField firstnameInput;
-    private InputField lastnameInput;
     public InputField usernameInput;
     public InputField passwordInput;
 
-    public Button loginButton;
+    public Button submitButton;
 
     public void CallLogin()
     {
@@ -21,9 +18,6 @@ public class Login : MonoBehaviour
     IEnumerator LoginPlayer()
     {
         WWWForm form = new WWWForm();
-        form.AddField("email", emailInput.text);
-        form.AddField("firstname", firstnameInput.text);
-        form.AddField("lastname", lastnameInput.text);
         form.AddField("username", usernameInput.text);
         form.AddField("password", passwordInput.text);
         WWW www = new WWW("http://localhost/SQLConnect/login.php", form);
