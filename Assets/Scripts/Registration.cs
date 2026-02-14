@@ -2,48 +2,48 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.UIElements;
-using Button = UnityEngine.UIElements.Button;
+// using UnityEngine.UIElements;
+// using Button = UnityEngine.UIElements.Button;
 
 public class Registration : MonoBehaviour
 {
-    private VisualElement root;
-    [SerializeField] private UIDocument welcomeDoc;
-    private VisualElement welcomePanel;
-    private InputField emailInput;
-    private InputField firstnameInput;
-    private InputField lastnameInput;
-    private InputField usernameInput;
-    private InputField passwordInput;
+    // private VisualElement root;
+    // [SerializeField] private UIDocument welcomeDoc;
+    // private VisualElement welcomePanel;
+    public InputField emailInput;
+    public InputField firstnameInput;
+    public InputField lastnameInput;
+    public InputField usernameInput;
+    public InputField passwordInput;
 
-    private Button registerButton;
-    private Button backButton;
-    private Button createButton;
+    public Button submitButton;
+    // private Button backButton;
+    // private Button createButton;
 
-    private void Awake()
-    {
-        // fetch the panel as soon as it is initialized
-        root = GetComponent<UIDocument>().rootVisualElement;
-        welcomePanel = welcomeDoc.rootVisualElement;
-    }
+    // private void Awake()
+    // {
+    //     // fetch the panel as soon as it is initialized
+    //     root = GetComponent<UIDocument>().rootVisualElement;
+    //     welcomePanel = welcomeDoc.rootVisualElement;
+    // }
 
-    private void OnEnable()
-    {
-        backButton = root.Q<Button>("BackButton");
-        backButton.clicked += OnBackClicked;
+    // private void OnEnable()
+    // {
+    //     backButton = root.Q<Button>("BackButton");
+    //     backButton.clicked += OnBackClicked;
 
-        createButton = root.Q<Button>("CreateAccountButton");
-        createButton.clicked += OnCreateAccountClicked;
-    }
+    //     createButton = root.Q<Button>("CreateAccountButton");
+    //     createButton.clicked += OnCreateAccountClicked;
+    // }
 
-    private void OnBackClicked()
-    {
-        root.style.display = DisplayStyle.None;
-        welcomePanel.style.display = DisplayStyle.Flex;
-    }
+    // private void OnBackClicked()
+    // {
+    //     root.style.display = DisplayStyle.None;
+    //     welcomePanel.style.display = DisplayStyle.Flex;
+    // }
 
-    private void OnCreateAccountClicked()
-    {}
+    // private void OnCreateAccountClicked()
+    // {}
 
     public void CallRegister()
     {
@@ -73,6 +73,6 @@ public class Registration : MonoBehaviour
 
     public void VerifyInputs()
     {
-        // place constraints on username and password here, such as length, special characters, etc.
+        // place constraints on input fields here, such as length, special characters, etc.
     }
 }
